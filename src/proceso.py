@@ -11,3 +11,6 @@ class Proceso:
         self.tiempo_llegada = 0
         self.tiempo_inicio = None
         self.tiempo_fin = None
+
+    def __repr__(self):
+        return f"<Proceso {self.pid} | Duración: {self.duracion} | Prioridad: {self.prioridad}>"
