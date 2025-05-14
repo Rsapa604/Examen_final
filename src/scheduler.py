@@ -28,3 +28,19 @@ class RoundRobinScheduler(Scheduler):
 
         tiempo = 0
         gantt = []
+
+        while True:
+            activos = [p for p in copia if p.tiempo_restante > 0]
+            if not activos:
+                break
+            for p in activos:
+                if p.tiempo_restante > 0:
+                    if p.tiempo_inicio is None:
+                        p.tiempo_inicio = tiempo
+                    ejecutar = min(self.quantum, p.tiempo_restante)
+                    gantt.append((p.pid, tiempo, tiempo + ejecutar))
+                    tiempo += ejecutar
+                    p.tiempo_restante -= ejecutar
+                    if p.tiempo_restante == 0:
+                        p.tiempo_fin = tiempo
+        return gantt
