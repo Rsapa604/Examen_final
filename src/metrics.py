@@ -12,3 +12,9 @@ def calcular_metricas(procesos):
         total_respuesta += respuesta
         total_retorno += retorno
         total_espera += espera
+
+    return {
+        "promedio_respuesta": total_respuesta / n,
+        "promedio_retorno": total_retorno / n,
+        "promedio_espera": total_espera / n
+    }
